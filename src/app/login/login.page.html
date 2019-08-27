@@ -1,0 +1,78 @@
+
+
+
+<ion-content class="auth-page" padding>
+  <div id="logo">
+    <!-- <img src="../../assets/imgs/Konet 2.png"> -->
+    <h3 style="">TEST APP</h3>
+  </div>
+  <div padding>
+    <ion-segment [(ngModel)]="login">
+      <ion-segment-button value="Login">
+        Login
+      </ion-segment-button>
+      <ion-segment-button value="Signup">
+        Signup
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="login">
+      <div *ngSwitchCase="'Login'">
+      <form   #loginForm="ngForm" (submit)="logIn(loginForm)" novalidate>
+          <ion-item [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.touched" [class.valid]="loginForm.controls.email.valid && loginForm.controls.email.touched">
+              <ion-input placeholder="Email" formControlName="email" type="email"></ion-input>
+            </ion-item>
+            <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid &&
+          loginForm.controls.email.touched">
+              <p>Please enter a valid email address.</p>
+            </ion-item> <br>
+            <ion-item [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.touched" [class.valid]="loginForm.controls.password.valid && loginForm.controls.password.touched">    
+              <ion-input placeholder="Password" [type]="passwordType" formControlName="password" ></ion-input>
+              <ion-icon [name]="passwordShown === true ? 'eye-off':'eye' " item-end color="primary" (click)="togglePassword()"></ion-icon>
+            </ion-item>
+            <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid
+          && loginForm.controls.password.touched">
+              <p>Your password must be more than 6 characters.</p>
+            </ion-item>
+            <br>
+            <button ion-button color="brand2" type="submit" medium full round>Login</button>
+           
+          </form>
+          <ion-buttons>
+              <button ion-button id="forgot_password" clear color="light" (click)="navigateToForgotPassword()">Forgot password?</button>
+            </ion-buttons>
+          </div>
+
+        <form *ngSwitchCase="'Signup'"  #signupForm="ngForm" (submit)="signUp(signupForm)" novalidate>
+            <ion-item>
+              <ion-input placeholder="First Name" type="text" formControlName="firstName"></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-input placeholder="Last Name" type="text" formControlName="lastName"></ion-input>
+            </ion-item><br>
+            <ion-item [class.invalid]="!signupForm.controls.email.valid && signupForm.controls.email.touched" [class.valid]="signupForm.controls.email.valid && signupForm.controls.email.touched">
+              <ion-input placeholder="Email" formControlName="email" type="email">
+              </ion-input>
+            </ion-item>
+            <ion-item class="error-message" *ngIf="!signupForm.controls.email.valid &&
+                  signupForm.controls.email.touched">
+              <p>Please enter a valid email address.</p>
+            </ion-item><br>
+            <ion-item [class.invalid]="!signupForm.controls.password.valid && signupForm.controls.password.touched"
+              [class.valid]="signupForm.controls.password.valid && signupForm.controls.password.touched">
+              <ion-input placeholder="Password" [type]="passwordType2" formControlName="password"></ion-input>
+              <ion-icon [name]="passwordShown2 === true ? 'eye-off':'eye' " item-end color="primary" (click)="togglePassword2()"></ion-icon>
+            </ion-item>
+            <ion-item class="error-message" *ngIf="!signupForm.controls.password.valid
+            && signupForm.controls.password.touched">
+              <p>Your password must be more than 6 characters.</p>
+            </ion-item><br>
+          
+         
+              <button ion-button color="brand2" type="submit"  medium full round>Signup</button>
+     
+          </form>
+
+  </div>
+</ion-content>
