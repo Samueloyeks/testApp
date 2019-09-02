@@ -51,6 +51,8 @@ export class AppComponent {
       const unsubscribe = firebase.auth().onAuthStateChanged(user => {
         console.log(user);
         if (!user) {
+          console.log('going to login page');
+          
           // this.rootPage = LoginPage;
           this.navCtrl.navigateRoot('login');
           unsubscribe();

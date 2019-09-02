@@ -1,11 +1,13 @@
 import { Component,OnInit } from '@angular/core';
-import {  NavController, NavParams, LoadingController, AlertController, ToastController } from '@ionic/angular';
+import {  NavController, LoadingController, AlertController, ToastController } from '@ionic/angular';
 import { ResetPasswordPage } from '../reset-password/reset-password.page';
 import { FirebaseServiceService } from '../firebase-service.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { EmailValidator } from '../validators/email';
 import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+
 // import { ServiceListPage } from '../service-list/service-list';
 // import { TabsPage } from '../tabs/tabs';
 // import { TestPage } from '../test/test';
@@ -16,34 +18,28 @@ import { Router } from '@angular/router';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
+
 export class LoginPage implements OnInit{
   ngOnInit(): void {
-    throw new Error("Method not implemented.");
+    // throw new Error("Method not implemented.");
   }
-  public loginForm: FormGroup;
-  public signupForm: FormGroup;
+
+  login;
   passwordType: string = 'password';
   passwordShown: boolean = false;
   passwordType2: string = 'password';
   passwordShown2: boolean = false;
-  login;
 
-  constructor(formBuilder: FormBuilder, public menuCtrl: MenuController, public firebaseService: FirebaseServiceService,public router:Router,
+
+  constructor(public menuCtrl: MenuController, public firebaseService: FirebaseServiceService,public router:Router,
     public FirebaseService: FirebaseServiceService, public navCtrl: NavController,
-    public navParams: NavParams, public loadingCtrl: LoadingController, public alertCtrl: AlertController,
+     public loadingCtrl: LoadingController, public alertCtrl: AlertController,
     public toastCtrl: ToastController) {
-    this.login = "Login";
-    this.loginForm = formBuilder.group({
-      email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
-    });
-    this.signupForm = formBuilder.group({
-      firstName: [''],
-      lastName: [''],
-      email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-    });
+      this.login = "Login";
+
   }
+
+
 
   public togglePassword() {
     if (this.passwordShown) {
@@ -64,34 +60,27 @@ export class LoginPage implements OnInit{
     }
   }
 
-  async logIn(): Promise<void> {
-    var that = this;
 
-    if (!this.loginForm.valid) {
-      const Alert = await this.alertCtrl.create({
-        message: 'Please enter email and password',
-        buttons: [
-          { text: 'Ok', role: 'cancel' },
-        ]
-      });
-      Alert.present();
-    } else {
-      var loader = await this.loadingCtrl.create({
-        message: "Please Wait..."
-      });
-      loader.present();
+  logIn(form: NgForm) {
+    const loginData = {
+      "email": form.value.email,
+      "password":form.value.password
+    }; 
+    console.log(loginData)
 
-      const email = this.loginForm.value.email;
-      const password = this.loginForm.value.password;
-
-       this.FirebaseService.loginUserService(email, password).then(async (authData: any) => {
+    this.loadingCtrl.create({
+      spinner: 'dots',
+      message: 'Processing...'
+    }).then(loadingElement => { 
+      loadingElement.present();
+      this.FirebaseService.loginUserService(form.value.email, form.value.password).then(async (authData: any) => {
         console.log(authData.user);
         if (authData.user.emailVerified) {
-          loader.dismiss();
+          this.loadingCtrl.dismiss();
           this.router.navigateByUrl('/home');
 
         } else {
-          loader.dismiss();
+          this.loadingCtrl.dismiss();
           this.router.navigateByUrl('/login');
           const Alert = await this.alertCtrl.create({
             message: 'Please verify email first',
@@ -103,7 +92,7 @@ export class LoginPage implements OnInit{
         }
 
       }, async error => {
-        loader.dismiss();
+        this.loadingCtrl.dismiss();
         let toast = await this.toastCtrl.create({
           message: "Sorry You're not registered",
           duration: 3000,
@@ -111,35 +100,24 @@ export class LoginPage implements OnInit{
         });
         toast.present();
       });
-    }
+    })
   }
-  async signUp(): Promise<void> {
-    var account = {
-      firstName: this.signupForm.value.firstName,
-      lastName: this.signupForm.value.lastName,
-      email: this.signupForm.value.email,
-      password: this.signupForm.value.password,
-
-    };
-
-    console.log(account);
-    if (!this.signupForm.valid) {
-      const Alert = await this.alertCtrl.create({
-        message: 'Please complete form',
-        buttons: [
-          { text: 'Ok', role: 'cancel' },
-        ]
-      });
-      Alert.present();
-      console.log(
-        `Form is not valid yet, current value: ${this.signupForm.value}`
-      );
-    } else {
-      var loader = await this.loadingCtrl.create({ message: "Please wait..." });
-      loader.present();
+  signUp(form:NgForm){
+    const account = {
+      "firstName":form.value.firstName,
+      "lastName":form.value.lastName,
+      "email": form.value.email,
+      "password":form.value.password
+    }; 
+    console.log(account)
+    this.loadingCtrl.create({
+      spinner: 'dots',
+      message: 'Processing...'
+    }).then(loadingElement => { 
+      loadingElement.present();
       this.FirebaseService.signupUserService(account).then(async () => {
-        loader.dismiss().then(() => {
-          this.router.navigateByUrl('/login');
+        this.loadingCtrl.dismiss().then(() => {
+          this.router.navigateByUrl('/home');
         })
         const Alert = await this.alertCtrl.create({
           message: 'A confirmation email has been sent to your email address',
@@ -154,7 +132,7 @@ export class LoginPage implements OnInit{
         Alert.present();
       }),
     async error => {
-      loader.dismiss();
+      this.loadingCtrl.dismiss();
       //unable to log in
       let toast = await this.toastCtrl.create({
         message: error,
@@ -163,9 +141,10 @@ export class LoginPage implements OnInit{
       });
       toast.present();
     };
+
+    })
   }
 
-  }
   navigateToForgotPassword() {
     this.router.navigateByUrl('/reset-password');
   }
