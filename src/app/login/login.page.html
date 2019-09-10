@@ -4,7 +4,7 @@
 <ion-content class="auth-page" padding>
   <div id="logo">
     <!-- <img src="../../assets/imgs/Konet 2.png"> -->
-    <h3 style="">TEST APP</h3>
+    <h3 class="logo">TEST APP</h3>
   </div>
   <div padding>
     <ion-segment [(ngModel)]="login">
@@ -22,16 +22,16 @@
       <form   #loginForm="ngForm" (submit)="logIn(loginForm)" novalidate>
           <ion-item>
               <ion-input placeholder="Email" ngModel type="email" clearInput name="email" > </ion-input>
-            </ion-item>
+            </ion-item><br/>
             <ion-item >    
               <ion-input placeholder="Password" ngModel [type]="passwordType" name = "password"  clearInput></ion-input>
               <ion-icon [name]="passwordShown === true ? 'eye-off':'eye' " item-end color="primary" (click)="togglePassword()"></ion-icon>
             </ion-item>
             <br>
-            <button ion-button color="brand2" type="submit" medium full round>Login</button>
+            <ion-button ion-button color="brand2" type="submit"  full round>Login</ion-button>
            
-          </form>
-          <ion-buttons>
+      </form><br/>
+          <ion-buttons style="float: right;color: aliceblue;font-size: 15px">
               <button ion-button id="forgot_password" clear color="light" (click)="navigateToForgotPassword()">Forgot password?</button>
             </ion-buttons>
           </div>
@@ -46,14 +46,14 @@
             <ion-item>
               <ion-input placeholder="Email" ngModel type="email" name="email" clearInput>
               </ion-input>
-            </ion-item>
+            </ion-item><br/>
             <ion-item >
               <ion-input placeholder="Password" ngModel [type]="passwordType2" name = "password" clearInput></ion-input>
               <ion-icon [name]="passwordShown2 === true ? 'eye-off':'eye' " item-end color="primary" (click)="togglePassword2()"></ion-icon>
-            </ion-item>
+            </ion-item><br/>
           
          
-              <button ion-button color="brand2" type="submit"  medium full round>Signup</button>
+              <ion-button ion-button color="brand2" type="submit"   full round>Signup</ion-button>
      
           </form>
 

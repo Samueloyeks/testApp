@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 
-import { Platform, NavController } from '@ionic/angular';
+import { Platform, NavController, ActionSheetController, LoadingController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import * as firebase from 'firebase';
+import { AppService } from './app.service';
+import { FirebaseServiceService } from './firebase-service.service';
 
 @Component({
   selector: 'app-root',
@@ -16,37 +18,36 @@ export class AppComponent {
       title: 'Home',
       url: '/home',
       icon: 'home'
-    },
-    {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
     }
   ];
 
-   config = {
-    apiKey: "AIzaSyBRVn9lTeETnhNgJfa-mH2QTUMkSkI0krw",
-    authDomain: "testapp-3f14a-69aa7.firebaseapp.com",
-    databaseURL: "https://testapp-3f14a-69aa7.firebaseio.com",
-    projectId: "testapp-3f14a",
-    storageBucket: "",
-    messagingSenderId: "730596614351",
-    appId: "1:730596614351:web:ff039809f83b4547"
-  };
+  //  config = {
+  //   apiKey: "AIzaSyCp6W8icwH_NZx68FvF52kxnul5tAB5bCw",
+  //   authDomain: "testapp-69214.firebaseapp.com",
+  //   databaseURL: "https://testapp-69214.firebaseio.com",
+  //   projectId: "testapp-69214",
+  //   storageBucket: "",
+  //   messagingSenderId: "95615464314",
+  //   appId: "1:95615464314:web:7e82b908f0f6773f755cc3"
+  // };
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public navCtrl:NavController
+    public navCtrl:NavController,
+    public actionSheetCtrl:ActionSheetController,
+    public loadingCtrl:LoadingController,
+    public appService:AppService,
+    public firebaseService:FirebaseServiceService
   ) {
     this.initializeApp();
   }
 
-  initializeApp() {
+  initializeApp() { 
     this.platform.ready().then(() => {
     });
-    firebase.initializeApp(this.config);
+    // firebase.initializeApp(this.config);
     this.platform.ready().then(() => {
       const unsubscribe = firebase.auth().onAuthStateChanged(user => {
         console.log(user);
@@ -70,4 +71,49 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+  async presentActionSheet(){
+    this.actionSheetCtrl.create({
+      header: 'Are you sure you want to Log out?',
+      buttons: [
+        {
+          text: 'Yes',
+          icon: 'log-out',
+          handler: () => {
+            this.presentLoader('Logging out...').then(()=>{
+              this.firebaseService.logoutUserService();
+              this.appService.deleteLocalStorage("userData")
+              this.navigateToPage('login')
+            }).then(()=>{
+              this.loadingCtrl.dismiss();
+
+            })
+          }
+        }, {
+          text: 'Cancel',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    }).then((actionSheet)=>{
+      actionSheet.present();
+    })
+    
+  }
+
+  navigateToPage(destination) {
+    this.appService.navigateToPage(destination);
+  }
+
+  async presentLoader(message) {
+    const loading = await this.loadingCtrl.create({
+      spinner: "dots",
+      message: message
+    });
+    await loading.present();
+  }
+
+
 }

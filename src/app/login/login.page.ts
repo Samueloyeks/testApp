@@ -7,6 +7,8 @@ import { EmailValidator } from '../validators/email';
 import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { AppService } from '../app.service';
+import * as firebase from 'firebase'
 
 // import { ServiceListPage } from '../service-list/service-list';
 // import { TabsPage } from '../tabs/tabs';
@@ -29,12 +31,13 @@ export class LoginPage implements OnInit{
   passwordShown: boolean = false;
   passwordType2: string = 'password';
   passwordShown2: boolean = false;
+  userData;
 
 
   constructor(public menuCtrl: MenuController, public firebaseService: FirebaseServiceService,public router:Router,
     public FirebaseService: FirebaseServiceService, public navCtrl: NavController,
      public loadingCtrl: LoadingController, public alertCtrl: AlertController,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,public appService: AppService) {
       this.login = "Login";
 
   }
@@ -74,22 +77,33 @@ export class LoginPage implements OnInit{
     }).then(loadingElement => { 
       loadingElement.present();
       this.FirebaseService.loginUserService(form.value.email, form.value.password).then(async (authData: any) => {
-        console.log(authData.user);
-        if (authData.user.emailVerified) {
-          this.loadingCtrl.dismiss();
-          this.router.navigateByUrl('/home');
+        firebase.database().ref(`/userProfile/${firebase.auth().currentUser.uid}`).once('value', async userProfileSnapshot => {
+          console.log(userProfileSnapshot.val());
 
-        } else {
-          this.loadingCtrl.dismiss();
-          this.router.navigateByUrl('/login');
-          const Alert = await this.alertCtrl.create({
-            message: 'Please verify email first',
-            buttons: [
-              { text: 'Ok', role: 'cancel' },
-            ]
-          });
-          Alert.present();
-        }
+          this.userData = userProfileSnapshot.val();
+          this.appService.storeLocalData('userData',JSON.stringify({
+            "firstName": this.userData.firstName,
+            "lastName": this.userData.lastName,
+            "email": this.userData.email
+          }))
+
+          console.log(authData.user);
+          if (authData.user.emailVerified) {
+            this.router.navigateByUrl('/home');
+  
+          } else {
+            this.loadingCtrl.dismiss();
+            this.router.navigateByUrl('/login');
+            const Alert = await this.alertCtrl.create({
+              message: 'Please verify email first',
+              buttons: [
+                { text: 'Ok', role: 'cancel' },
+              ]
+            });
+            Alert.present();
+          }
+     
+        });
 
       }, async error => {
         this.loadingCtrl.dismiss();
@@ -117,6 +131,11 @@ export class LoginPage implements OnInit{
       loadingElement.present();
       this.FirebaseService.signupUserService(account).then(async () => {
         this.loadingCtrl.dismiss().then(() => {
+          this.appService.storeLocalData('userData',JSON.stringify({
+            "firstName":form.value.firstName,
+            "lastName":form.value.lastName,
+            "email": form.value.email
+          }))
           this.router.navigateByUrl('/home');
         })
         const Alert = await this.alertCtrl.create({

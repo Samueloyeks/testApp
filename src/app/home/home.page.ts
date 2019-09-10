@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import * as firebase from 'firebase';
+import { AppService } from '../app.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +10,26 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  userData;
+  firstName;
+  lastName
+  email;
+  constructor(public appService:AppService,public loadingCtrl:LoadingController) {
+    this.getLocallyStoredUserData();
+    this.loadingCtrl.getTop().then(v => v ? this.loadingCtrl.dismiss() : null);
+  }
+
+
+  getLocallyStoredUserData() {
+    // get verification data
+    this.appService.getLocalStorage("userData").then(data => {
+      console.log("HOME PAGE - PASSENGER DATA");
+      console.log(JSON.parse(data.value));
+      this.userData = JSON.parse(data.value);
+      this.firstName = this.userData.firstName;
+      this.lastName = this.userData.lastName;
+      this.email = this.userData.email;
+    })
+    }
 
 }

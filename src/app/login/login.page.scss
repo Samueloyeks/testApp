@@ -1,4 +1,4 @@
-page-login {
+// page-login {
     ion-icon::before {
       color: #90b6fb;
   }
@@ -22,7 +22,11 @@ page-login {
     .button-ios{
       background-color: #90b6fb !important;
     }
-  ion-content{text-align: center}
+  ion-content{
+    text-align: center;
+    background-color: #90b6fb;
+    --background:#3a465f;
+  }
   #logo>img{height: 220px;}
   .scroll-content {
       padding: 16px;
@@ -58,5 +62,12 @@ page-login {
         }
       }
     }
-  }
+    .logo{
+      font-size: 30px;
+      font-family: fantasy;
+      font-weight: bolder;
+      margin: 50px;
+      color: aliceblue;
+    }
+  // }
   

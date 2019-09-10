@@ -8,7 +8,20 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FirebaseServiceService } from './firebase-service.service';
+import * as firebase from 'firebase';
 
+
+export const  config = {
+  apiKey: "AIzaSyCp6W8icwH_NZx68FvF52kxnul5tAB5bCw",
+  authDomain: "testapp-69214.firebaseapp.com",
+  databaseURL: "https://testapp-69214.firebaseio.com",
+  projectId: "testapp-69214",
+  storageBucket: "",
+  messagingSenderId: "95615464314",
+  appId: "1:95615464314:web:7e82b908f0f6773f755cc3"
+};
+firebase.initializeApp(config);
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -20,6 +33,7 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [
     StatusBar,
     SplashScreen,
+    FirebaseServiceService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
