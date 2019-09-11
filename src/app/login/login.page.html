@@ -8,10 +8,10 @@
   </div>
   <div padding>
     <ion-segment [(ngModel)]="login">
-      <ion-segment-button value="Login">
+      <ion-segment-button value="Login" style="color: aliceblue">
         Login
       </ion-segment-button>
-      <ion-segment-button value="Signup">
+      <ion-segment-button value="Signup" style="color: aliceblue">
         Signup
       </ion-segment-button>
     </ion-segment>
@@ -21,39 +21,39 @@
       <div *ngSwitchCase="'Login'">
       <form   #loginForm="ngForm" (submit)="logIn(loginForm)" novalidate>
           <ion-item>
-              <ion-input placeholder="Email" ngModel type="email" clearInput name="email" > </ion-input>
+              <ion-input required placeholder="Email" ngModel type="email" clearInput name="email" > </ion-input>
             </ion-item><br/>
             <ion-item >    
-              <ion-input placeholder="Password" ngModel [type]="passwordType" name = "password"  clearInput></ion-input>
+              <ion-input required placeholder="Password" ngModel [type]="passwordType" name = "password"  clearInput></ion-input>
               <ion-icon [name]="passwordShown === true ? 'eye-off':'eye' " item-end color="primary" (click)="togglePassword()"></ion-icon>
             </ion-item>
             <br>
-            <ion-button ion-button color="brand2" type="submit"  full round>Login</ion-button>
+            <ion-button [disabled]="!loginForm.valid" style="border-radius: 30px" ion-button color="brand2" type="submit"  full round>Login</ion-button>
            
       </form><br/>
-          <ion-buttons style="float: right;color: aliceblue;font-size: 15px">
-              <button ion-button id="forgot_password" clear color="light" (click)="navigateToForgotPassword()">Forgot password?</button>
+          <ion-buttons style="float: right">
+              <button style="float: right;color: aliceblue;font-size: 15px" ion-button id="forgot_password" clear color="light" (click)="navigateToForgotPassword()">Forgot password?</button>
             </ion-buttons>
           </div>
 
         <form *ngSwitchCase="'Signup'"  #signupForm="ngForm" (submit)="signUp(signupForm)" novalidate>
             <ion-item>
-              <ion-input placeholder="First Name" ngModel type="text" name="firstName" clearInput></ion-input>
+              <ion-input required placeholder="First Name" ngModel type="text" name="firstName" clearInput></ion-input>
             </ion-item><br>
             <ion-item>
-              <ion-input placeholder="Last Name" ngModel type="text" name = "lastName" clearInput></ion-input>
+              <ion-input required placeholder="Last Name" ngModel type="text" name = "lastName" clearInput></ion-input>
             </ion-item><br>
             <ion-item>
-              <ion-input placeholder="Email" ngModel type="email" name="email" clearInput>
+              <ion-input required placeholder="Email" ngModel type="email" name="email" clearInput>
               </ion-input>
             </ion-item><br/>
             <ion-item >
-              <ion-input placeholder="Password" ngModel [type]="passwordType2" name = "password" clearInput></ion-input>
+              <ion-input required placeholder="Password" ngModel [type]="passwordType2" name = "password" clearInput></ion-input>
               <ion-icon [name]="passwordShown2 === true ? 'eye-off':'eye' " item-end color="primary" (click)="togglePassword2()"></ion-icon>
             </ion-item><br/>
           
          
-              <ion-button ion-button color="brand2" type="submit"   full round>Signup</ion-button>
+              <ion-button [disabled]="!signUp.valid" style="border-radius: 30px" ion-button color="brand2" type="submit"   full round>Signup</ion-button>
      
           </form>
 
