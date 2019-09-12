@@ -18,7 +18,17 @@ export class AppComponent {
       title: 'Home',
       url: '/home',
       icon: 'home'
-    }
+    },
+    {
+      title: 'Profile',
+      url: '/profile',
+      icon: 'contact'
+    },
+    {
+      title: 'About',
+      url: '/about',
+      icon: 'information'
+    },
   ];
 
   //  config = {

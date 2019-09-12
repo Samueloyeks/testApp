@@ -16,7 +16,9 @@ const routes: Routes = [
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-  { path: 'reset-password', loadChildren: './reset-password/reset-password.module#ResetPasswordPageModule' }
+  { path: 'reset-password', loadChildren: './reset-password/reset-password.module#ResetPasswordPageModule' },
+  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
+  { path: 'about', loadChildren: './about/about.module#AboutPageModule' }
 ];
 
 @NgModule({

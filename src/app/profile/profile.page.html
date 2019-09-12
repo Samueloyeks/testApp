@@ -1,0 +1,49 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Profile
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-row>
+  <ion-col>
+<div style="text-align: center">
+  <img src="../../assets/icon/avatar.svg" style="width: 40%"/>
+</div>
+  </ion-col>
+</ion-row>
+
+<div id="profile-info">
+  <div class="profile-content">
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="label-class">FIRST NAME</ion-label>
+          <ion-input [ngModel]="firstName" class="input-class" type="text"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+            <ion-label class="label-class">LAST NAME</ion-label>
+            <ion-input [ngModel]="lastName"  class="input-class" type="text"></ion-input>
+          </ion-col>
+      </ion-row>
+
+        <ion-row>
+          <ion-col>
+              <ion-label class="label-class">EMAIL ADDRESS</ion-label>
+              <ion-input [ngModel]="email"  class="input-class" type="email"></ion-input>
+          </ion-col>
+          </ion-row>
+<div style="text-align: center">
+    <ion-button style="border-radius: 30px" ion-button color="primary" type="submit"   full round>EDIT</ion-button>
+
+</div>
+
+    </div>
+</div>
+</ion-content>

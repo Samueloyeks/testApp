@@ -2,3 +2,14 @@
   max-height: 35vh;
   overflow: hidden;
 }
+page-feed {
+  #menu::before{display: none !important;}
+  #create::before{display: none !important;}
+  ion-title{text-align: center}
+  .icons::before{display: none}
+}
+ion-content{
+  text-align: center;
+  background-color: #90b6fb;
+  --background:#3a465f;
+}

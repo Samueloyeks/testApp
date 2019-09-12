@@ -1,7 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import * as firebase from 'firebase';
 import { AppService } from '../app.service';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +14,7 @@ export class HomePage {
   firstName;
   lastName
   email;
-  constructor(public appService:AppService,public loadingCtrl:LoadingController,public zone:NgZone) {
+  constructor(public appService:AppService,public loadingCtrl:LoadingController,public zone:NgZone, public actionSheetCtrl:ActionSheetController) {
     this.getLocallyStoredUserData();
     this.loadingCtrl.getTop().then(v => v ? this.loadingCtrl.dismiss() : null);
   }
@@ -31,6 +31,24 @@ export class HomePage {
         this.email = this.userData.email;
       })
     })
+    }
+
+    async presentActionSheet() {
+      const actionSheet = await this.actionSheetCtrl.create({
+        // title: 'Are you sure you want to Log out?',
+        buttons: [
+          {text: 'Contact via phone' },
+          {text: 'Email' },
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          }
+        ]
+      });
+       actionSheet.present();
     }
 
 }

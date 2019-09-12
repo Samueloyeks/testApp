@@ -15,13 +15,13 @@
                 {{p.title}}
               </ion-label>
             </ion-item>
-            <ion-item [routerDirection]="'root'" (click)="presentActionSheet()"> 
-              <ion-icon slot="start" name="log-out"></ion-icon>
-                <ion-label>
-                  Log out
-                </ion-label>
-            </ion-item>
           </ion-menu-toggle>
+          <ion-item [routerDirection]="'root'" (click)="presentActionSheet()"> 
+            <ion-icon slot="start" name="log-out"></ion-icon>
+              <ion-label>
+                Log out
+              </ion-label>
+          </ion-item>
         </ion-list>
       </ion-content>
     </ion-menu>
