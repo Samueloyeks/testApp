@@ -2,7 +2,8 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="home"></ion-back-button>
+      <ion-back-button defaultHref="home" *ngIf="userType == 'ENTREPRENEUR'"></ion-back-button>
+      <ion-back-button defaultHref="investor-home" *ngIf="userType == 'INVESTOR'"></ion-back-button>
     </ion-buttons>
     <ion-title>
       Profile

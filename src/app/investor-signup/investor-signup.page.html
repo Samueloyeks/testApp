@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="login"></ion-back-button>
+  </ion-buttons>
+  <ion-title>
+    Portfolio
+  </ion-title>
+</ion-toolbar>
+</ion-header>
+
+<ion-content class="auth-page" padding>
+  <div id="logo">
+    <!-- <img src="../../assets/imgs/Konet 2.png"> -->
+    <h3 class="logo">TEST APP</h3>
+  </div>
+
+  <form  #signupForm="ngForm" (submit)="signUp(signupForm)" novalidate>
+    <ion-item>
+      <ion-input required placeholder="First Name" ngModel type="text" name="firstName" clearInput></ion-input>
+    </ion-item><br>
+    <ion-item>
+      <ion-input required placeholder="Last Name" ngModel type="text" name = "lastName" clearInput></ion-input>
+    </ion-item><br>
+    <ion-item>
+      <ion-input required placeholder="Email" ngModel type="email" name="email" clearInput>
+      </ion-input>
+    </ion-item><br/>
+    <ion-item>
+      <ion-input required placeholder="Phone" ngModel type="tel" name="phoneNumber" clearInput>
+      </ion-input>
+    </ion-item><br/>
+    <ion-item >
+      <ion-input required placeholder="Password" ngModel [type]="passwordType2" name = "password" clearInput></ion-input>
+      <ion-icon [name]="passwordShown2 === true ? 'eye-off':'eye' " item-end color="primary" (click)="togglePassword2()"></ion-icon>
+    </ion-item><br/>
+  
+ 
+      <ion-button [disabled]="!signupForm.valid" style="border-radius: 30px" ion-button color="brand2" type="submit"   full round>Signup</ion-button>
+
+  </form>
+</ion-content>

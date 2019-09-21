@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-title>investmentModal</ion-title> -->
+    <ion-button end (click)="submitForm()">close</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form #investmentForm="ngForm" (ngSubmit)="submitForm(investmentForm)">
+      <ion-label>Name of Investment</ion-label>
+      <ion-input name="name" ngModel required></ion-input><br/>
+    <ion-label>Select country</ion-label>
+    <ion-select  required name="country" ngModel>
+      <ion-select-option *ngFor="let country of countries">
+        {{country}}
+      </ion-select-option>
+    </ion-select><br/>
+  
+    <ion-label>Select sector</ion-label>
+    <ion-select multiple="true" ngModel required name="sector">
+      <ion-select-option  *ngFor="let sector of sectors">{{sector}}</ion-select-option>
+  
+    </ion-select><br/>
+    <ion-label>Investment Budget</ion-label>
+    <ion-select  required name="budget" ngModel>
+      <ion-select-option *ngFor="let budget of budgets">
+        {{budget}}
+      </ion-select-option>
+    </ion-select><br/>
+
+    <ion-button expand="full" [disabled]="!investmentForm.valid" type="submit">SUBMIT</ion-button>
+
+  </form>
+</ion-content>

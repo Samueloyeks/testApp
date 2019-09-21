@@ -18,7 +18,17 @@ const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'reset-password', loadChildren: './reset-password/reset-password.module#ResetPasswordPageModule' },
   { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
-  { path: 'about', loadChildren: './about/about.module#AboutPageModule' }
+  { path: 'about', loadChildren: './about/about.module#AboutPageModule' },
+  { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioPageModule' },
+  { path: 'investment-history', loadChildren: './investment-history/investment-history.module#InvestmentHistoryPageModule' },
+  { path: 'notifications', loadChildren: './notifications/notifications.module#NotificationsPageModule' },
+  { path: 'chats', loadChildren: './chats/chats.module#ChatsPageModule' },
+  { path: 'support', loadChildren: './support/support.module#SupportPageModule' },
+  { path: 'investor-signup', loadChildren: './investor-signup/investor-signup.module#InvestorSignupPageModule' },
+  { path: 'investor-home', loadChildren: './investor-home/investor-home.module#InvestorHomePageModule' },
+  { path: 'investment-profile', loadChildren: './investment-profile/investment-profile.module#InvestmentProfilePageModule' },
+  { path: 'investments', loadChildren: './investments/investments.module#InvestmentsPageModule' },
+  { path: 'companies', loadChildren: './companies/companies.module#CompaniesPageModule' },
 ];
 
 @NgModule({

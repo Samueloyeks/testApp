@@ -1,7 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import * as firebase from 'firebase';
 import { AppService } from '../app.service';
-import { LoadingController, ActionSheetController } from '@ionic/angular';
+import { LoadingController, ActionSheetController, Events, MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -14,11 +14,16 @@ export class HomePage {
   firstName;
   lastName
   email;
-  constructor(public appService:AppService,public loadingCtrl:LoadingController,public zone:NgZone, public actionSheetCtrl:ActionSheetController) {
+  constructor(public appService:AppService,public loadingCtrl:LoadingController,public menu:MenuController,
+    public zone:NgZone, public actionSheetCtrl:ActionSheetController,public events:Events) {
     this.getLocallyStoredUserData();
     this.loadingCtrl.getTop().then(v => v ? this.loadingCtrl.dismiss() : null);
   }
 
+  openFirst() {
+    this.menu.enable(true, 'first');
+    this.menu.open('first');
+  }
 
   getLocallyStoredUserData() {
     this.zone.run(()=>{
@@ -29,6 +34,7 @@ export class HomePage {
         this.firstName = this.userData.firstName;
         this.lastName = this.userData.lastName;
         this.email = this.userData.email;
+        this.events.publish('userData',this.userData)
       })
     })
     }

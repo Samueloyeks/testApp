@@ -1,0 +1,29 @@
+ion-item{
+    --ion-background-color:#3a465f;
+    background-color: #3a465f;
+  }
+
+  .list-md{
+    background-color: #3a465f;
+    height: 100%;
+    padding-top: 30px;
+  }
+  .list .item-lines-none .list-ios ion-list .hydrated{
+    --ion-background-color:#3a465f !important;
+    background-color: #3a465f;
+    height: 100%;
+    padding-top: 30px;
+    --overflow: hidden;
+    margin-bottom: 0px;
+    --max-height:100%
+  }
+  ion-menu {
+    height: 100%;;
+    ion-list {
+      --ion-background-color:#3a465f !important;
+      background-color: #3a465f;
+      height: 100%;
+      padding-top: 30px;
+      --overflow: hidden;
+    }
+  }

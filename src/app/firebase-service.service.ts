@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
+import { Events } from '@ionic/angular';
 // import 'rxjs/add/operator/map';
 
 
@@ -20,9 +21,10 @@ export class FirebaseServiceService {
   public serviceList: any;
 
 
-  constructor() {
+  allInvestments = [];
+  constructor(public events:Events) {
     this.fireAuth = firebase.auth();
-    this.userProfile = firebase.database().ref('users');
+    this.userProfile = firebase.database().ref('userProfile');
   }
 
   loginUserService(email: string, password: string): Promise<void> {
@@ -53,6 +55,22 @@ export class FirebaseServiceService {
       });
   }
 
+  addInvestment(data){
+   return this.userProfile.child(`${firebase.auth().currentUser.uid}`).child('investmentProfile').push(data)
+  }
+
+  getInvestments(){
+    let temp
+    this.userProfile.child(`${firebase.auth().currentUser.uid}`).child('investmentProfile').on('value',data=>{
+      console.log(data.val())
+      this.allInvestments = []
+      temp = data.val();
+      for (var tempkey in temp) {
+        this.allInvestments.push(temp[tempkey]);
+      }
+      this.events.publish('investments',this.allInvestments)
+    })
+  }
 
 
 }

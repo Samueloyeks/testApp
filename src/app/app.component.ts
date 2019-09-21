@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 
-import { Platform, NavController, ActionSheetController, LoadingController } from '@ionic/angular';
+import { Platform, NavController, ActionSheetController, LoadingController, Events } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import * as firebase from 'firebase';
@@ -13,23 +13,7 @@ import { FirebaseServiceService } from './firebase-service.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  public appPages = [
-    {
-      title: 'Home',
-      url: '/home',
-      icon: 'home'
-    },
-    {
-      title: 'Profile',
-      url: '/profile',
-      icon: 'contact'
-    },
-    {
-      title: 'About',
-      url: '/about',
-      icon: 'information'
-    },
-  ];
+  public appPages = [];
 
   //  config = {
   //   apiKey: "AIzaSyCp6W8icwH_NZx68FvF52kxnul5tAB5bCw",
@@ -41,6 +25,82 @@ export class AppComponent {
   //   appId: "1:95615464314:web:7e82b908f0f6773f755cc3"
   // };
 
+  userData;
+  firstName;
+  lastName
+  email;
+  phoneNumber;
+  userType;
+
+  entrepreneurArr = [
+    {
+      title: 'Home',
+      url: '/home',
+      icon: 'home'
+    },
+    {
+      title: 'Profile',
+      url: '/profile',
+      icon: 'contact'
+    },
+    {
+      title: 'Portfolio',
+      url: '/portfolio',
+      icon: 'briefcase'
+    },
+    {
+      title: 'Investment History',
+      url: '/investment-history',
+      icon: 'logo-usd'
+    },
+    {
+      title: 'Notifications',
+      url: '/notifications',
+      icon: 'notifications'
+    },
+    {
+      title: 'Support',
+      url: '/about',
+      icon: 'information'
+    },
+    {
+      title: "What's on Your Mind?",
+      url: '/support',
+      icon: 'call'
+    },
+    {
+      title: "Chats",
+      url: '/chats',
+      icon: 'chatbubbles'
+    },
+  ]
+  investorArr = [
+    {
+      title: 'Home',
+      url: '/investor-home',
+      icon: 'home'
+    },
+    {
+      title: 'Profile',
+      url: '/profile',
+      icon: 'contact'
+    },
+    {
+      title: 'Investment Profile',
+      url: '/investment-profile',
+      icon: 'briefcase'
+    },
+    {
+      title: 'My Investments',
+      url: '/investments',
+      icon: 'cash'
+    },
+    {
+      title: 'Companies I Follow',
+      url: '/companies',
+      icon: 'globe'
+    },
+  ]
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -49,9 +109,25 @@ export class AppComponent {
     public actionSheetCtrl:ActionSheetController,
     public loadingCtrl:LoadingController,
     public appService:AppService,
-    public firebaseService:FirebaseServiceService
+    public firebaseService:FirebaseServiceService,
+    public zone:NgZone,
+    public events:Events
+
   ) {
     this.initializeApp();
+    this.getLocallyStoredUserData()
+    this.events.subscribe('userData',(userData)=>{
+      this.userData = userData;
+      this.firstName = this.userData.firstName;
+      this.lastName = this.userData.lastName;
+      this.email = this.userData.email;
+      this.phoneNumber = this.userData.phoneNumber;
+      this.userType = this.userData.userType;
+    })
+  }
+
+  ngAfterViewInit(){
+   this.getLocallyStoredUserData()
   }
 
   initializeApp() { 
@@ -68,9 +144,26 @@ export class AppComponent {
           this.navCtrl.navigateRoot('login');
           unsubscribe();
         } else {
+
           if (user.emailVerified) {
-            this.navCtrl.navigateRoot('home');
-            // this.rootPage = TestPage;
+            if(this.userType == 'ENTREPRENEUR'){
+              this.zone.run(()=>{
+                console.log('ENTREPRENEUR');
+                this.appPages = this.entrepreneurArr
+                
+                this.navCtrl.navigateRoot('home');
+              })
+
+            }else if(this.userType == 'INVESTOR'){
+              this.zone.run(()=>{
+                console.log('INVESTOR');
+                this.appPages = this.investorArr
+  
+                this.navCtrl.navigateRoot('investor-home');
+              })
+
+            }
+            
           } else {
             this.navCtrl.navigateRoot('login');
           }
@@ -112,6 +205,20 @@ export class AppComponent {
     })
     
   }
+
+  getLocallyStoredUserData() {
+    this.zone.run(()=>{
+      this.appService.getLocalStorage("userData").then(data => {
+        console.log(JSON.parse(data.value));
+        this.userData = JSON.parse(data.value);
+        this.firstName = this.userData.firstName;
+        this.lastName = this.userData.lastName;
+        this.email = this.userData.email;
+        this.phoneNumber = this.userData.phoneNumber;
+        this.userType = this.userData.userType;
+      })
+    })
+    }
 
   navigateToPage(destination) {
     this.appService.navigateToPage(destination);

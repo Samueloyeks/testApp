@@ -14,6 +14,9 @@ export class ProfilePage implements OnInit {
   firstName;
   lastName
   email;
+  phoneNumber;
+  userType;
+  
   constructor(public appService:AppService,public loadingCtrl:LoadingController,public zone:NgZone) { 
     this.getLocallyStoredUserData();
   }
@@ -31,6 +34,8 @@ export class ProfilePage implements OnInit {
         this.firstName = this.userData.firstName;
         this.lastName = this.userData.lastName;
         this.email = this.userData.email;
+        this.phoneNumber = this.userData.phoneNumber;
+        this.userType = this.userData.userType;
       })
     })
     }

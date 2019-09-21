@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FirebaseServiceService } from './firebase-service.service';
 import * as firebase from 'firebase';
+import { InvestmentModalPageModule } from './investment-modal/investment-modal.module';
 
 
 export const  config = {
@@ -28,7 +29,8 @@ firebase.initializeApp(config);
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    InvestmentModalPageModule,
   ],
   providers: [
     StatusBar,

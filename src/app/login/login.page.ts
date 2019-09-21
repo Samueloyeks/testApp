@@ -83,15 +83,35 @@ export class LoginPage implements OnInit{
           console.log(userProfileSnapshot.val());
 
           this.userData = userProfileSnapshot.val();
-          this.appService.storeLocalData('userData',JSON.stringify({
-            "firstName": this.userData.firstName,
-            "lastName": this.userData.lastName,
-            "email": this.userData.email
-          }))
 
           console.log(authData.user);
           if (authData.user.emailVerified) {
-            this.router.navigateByUrl('/home');
+
+            if(this.userData.userType == 'ENTREPRENEUR'){
+              this.appService.storeLocalData('userData',JSON.stringify({
+                "firstName": this.userData.firstName,
+                "lastName": this.userData.lastName,
+                "email": this.userData.email,
+                "phoneNumber": this.userData.phoneNumber,
+                "userType" : this.userData.userType
+              }))
+              console.log('ENTREPRENEUR');
+
+              this.navCtrl.navigateRoot('home');
+
+            }else if(this.userData.userType == 'INVESTOR'){
+              this.appService.storeLocalData('userData',JSON.stringify({
+                "firstName": this.userData.firstName,
+                "lastName": this.userData.lastName,
+                "email": this.userData.email,
+                "phoneNumber": this.userData.phoneNumber,
+                "userType" : this.userData.userType
+              }))
+              console.log('INVESTOR');
+
+              this.navCtrl.navigateRoot('investor-home');
+
+            }
   
           } else {
             this.loadingCtrl.dismiss();
@@ -123,7 +143,9 @@ export class LoginPage implements OnInit{
       "firstName":form.value.firstName,
       "lastName":form.value.lastName,
       "email": form.value.email,
-      "password":form.value.password
+      "phoneNumber": form.value.phoneNumber,
+      // "password":form.value.password,
+      "userType": "ENTREPRENEUR"
     }; 
     console.log(account)
     this.loadingCtrl.create({
@@ -136,7 +158,9 @@ export class LoginPage implements OnInit{
           this.appService.storeLocalData('userData',JSON.stringify({
             "firstName":form.value.firstName,
             "lastName":form.value.lastName,
-            "email": form.value.email
+            "email": form.value.email,
+            "phoneNumber": form.value.phoneNumber,
+            "userType" : "ENTREPRENEUR"
           }))
           this.router.navigateByUrl('/home');
         })
@@ -166,6 +190,9 @@ export class LoginPage implements OnInit{
     })
   }
 
+  navigateToPage(destination) {
+    this.router.navigateByUrl(destination);
+  }
   navigateToForgotPassword() {
     this.router.navigateByUrl('/reset-password');
   }
