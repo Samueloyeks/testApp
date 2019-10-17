@@ -73,61 +73,61 @@
     
 
 .companyName{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+  }
+  .smallText{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    display: inline-block;
+  }
+  .slider-div{
+    width: 100%;
+    text-align: center;
+    // border-bottom: 0.2px solid #C4C4C4;
+    height: 100%;
+  }
+  .slider-img{
+    // width: 75%;
+    // height: 40%;
+  }
+  .medium-text{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  }
+  
+  .header{
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
-}
-.smallText{
+  padding: 10px;
+  
+  color: rgba(0, 0, 0, 0.54);
+  text-align: right;
+  border-right: 5px solid #429E1A;
+  }
+  .sign-in{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  color: #000000;
+  text-align: left;
+  // padding: 20px;
+  }
+  .forgot-pass{
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
-  display: inline-block;
-}
-.slider-div{
-  width: 100%;
-  text-align: center;
-  // border-bottom: 0.2px solid #C4C4C4;
-  height: 100%;
-}
-.slider-img{
-  // width: 75%;
-  // height: 40%;
-}
-.medium-text{
-font-style: normal;
-font-weight: normal;
-font-size: 22px;
-}
-
-.header{
-font-style: normal;
-font-weight: normal;
-font-size: 24px;
-padding: 10px;
-
-color: rgba(0, 0, 0, 0.54);
-text-align: right;
-border-right: 5px solid #429E1A;
-}
-.sign-in{
-font-style: normal;
-font-weight: 500;
-font-size: 28px;
-color: #000000;
-text-align: left;
-// padding: 20px;
-}
-.forgot-pass{
-font-style: normal;
-font-weight: normal;
-font-size: 12px;
-/* identical to box height */
-text-align: right;
-color: #429E1A;
-}
-
-.password-input{
-  background-image: url('../../assets/icon/padlock.svg');
-  background-repeat: no-repeat;
-  background-position: right;
-}
+  /* identical to box height */
+  text-align: right;
+  color: #429E1A;
+  }
+  
+  .password-input{
+    background-image: url('../../assets/icon/padlock.svg');
+    background-repeat: no-repeat;
+    background-position: right;
+  }

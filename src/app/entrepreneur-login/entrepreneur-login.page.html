@@ -1,0 +1,76 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>investor-landing</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+
+
+<ion-content class="onboarding-bg">
+    <ion-row>
+        <ion-col size="2">
+            <ion-buttons (click)="navigateToPage('/entrepreneur-landing')">
+              <ion-img src="../assets/icon/arrow-back.svg" style="width: 24px;margin:20px"></ion-img>
+            </ion-buttons>
+        </ion-col>      
+      </ion-row> 
+      <ion-row>
+        <ion-col class="header">
+          Entrepreneur
+        </ion-col>
+      </ion-row>
+  
+    <ion-grid style="text-align: center;padding: 0px;">
+        <ion-row style="height: 100%;">
+          <ion-col style="padding: 0px;">
+  
+                   <div class="slider-div">
+                      <p class="companyName">Company name</p>
+                      <form   #loginForm="ngForm" (submit)="logIn(loginForm)" novalidate>
+                          <div style="padding: 10px 40px;">
+                              <p class="sign-in">Sign in</p>
+                              <input type="email" placeholder="Email address" required ngModel clearInput name="email"/><br/><br/>
+                              <input class="password-input" type="password" placeholder="Password" required  ngModel name = "password"  clearInput/>
+                              <p class="forgot-pass">Forgot password?</p>
+                              <ion-button style="width: 100%;" class="default-button" [disabled]="!loginForm.valid" type="submit">
+                                Sign in
+                              </ion-button><br/>
+                              <div style="text-align: center;margin:auto">
+                                <hr style="background-color:
+                                  #00000070;width:20%;margin: 0px;display: inline-block;">
+                                <p style="display: inline-block;margin:0px;font-size:medium;vertical-align: sub;margin: 15px;color: #00000070;">or connect with</p>
+                                <hr style="display: inline-block;background-color:
+                                  #00000070;width:20%;margin: 0px;">
+                              </div><br>
+                            </div>    
+                      </form>
+                   </div>
+              
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col style="text-align: right;">
+            <img style="margin-left: 5px;" src="../../assets/imgs/linkedIn.png"/>
+          </ion-col>
+          <ion-col style="text-align: left;">
+            <img style="margin-left: 5px;" src="../../assets/imgs/google.png"/>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <p class="smallText" style="color: #00000070;"  (click)="navigateToPage('/investor-signup')">Don't have an account? </p><p style="color:#429E1A ;margin-left: 3px;" class="smallText">Sign up</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  
+    <ion-grid style="text-align:center">
+      <ion-row>
+        <ion-col>
+  
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+  </ion-content>
+  
+  

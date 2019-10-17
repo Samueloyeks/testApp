@@ -1,24 +1,42 @@
-import { Component, OnInit} from '@angular/core';
-import { LoadingController, AlertController, ToastController } from '@ionic/angular';
+import { Component,OnInit } from '@angular/core';
+import {  NavController, LoadingController, AlertController, ToastController } from '@ionic/angular';
+import { ResetPasswordPage } from '../reset-password/reset-password.page';
 import { FirebaseServiceService } from '../firebase-service.service';
-import { AppService } from '../app.service';
+import { FormGroup, Validators } from '@angular/forms';
+import { EmailValidator } from '../validators/email';
+import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-
+import { AppService } from '../app.service';
+import * as firebase from 'firebase'
 
 @Component({
-  selector: 'app-investor-signup',
-  templateUrl: './investor-signup.page.html',
-  styleUrls: ['./investor-signup.page.scss'],
+  selector: 'app-entrepreneur-signup',
+  templateUrl: './entrepreneur-signup.page.html',
+  styleUrls: ['./entrepreneur-signup.page.scss'],
 })
-export class InvestorSignupPage implements OnInit {
+export class EntrepreneurSignupPage implements OnInit {
 
-  constructor(public loadingCtrl:LoadingController, public FirebaseService:FirebaseServiceService,
-     public appService:AppService, public router:Router, public alertCtrl:AlertController, public toastCtrl:ToastController) { }
+  login;
+  passwordType: string = 'password';
+  passwordShown: boolean = false;
+  passwordType2: string = 'password';
+  passwordShown2: boolean = false;
+  userData;
+
+  constructor(public menuCtrl: MenuController, public firebaseService: FirebaseServiceService,public router:Router,
+    public FirebaseService: FirebaseServiceService, public navCtrl: NavController,
+     public loadingCtrl: LoadingController, public alertCtrl: AlertController,
+    public toastCtrl: ToastController,public appService: AppService) {
+      this.login = "Login";
+
+  }
 
   ngOnInit() {
   }
-
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
 
   signUp(form:NgForm){
     const account = {
@@ -26,8 +44,8 @@ export class InvestorSignupPage implements OnInit {
       "lastName":form.value.lastName,
       "email": form.value.email,
       "phoneNumber": form.value.phoneNumber,
-      "password":form.value.password,
-      "userType": "INVESTOR"
+      // "password":form.value.password,
+      "userType": "ENTREPRENEUR"
     }; 
     console.log(account)
     this.loadingCtrl.create({
@@ -40,7 +58,9 @@ export class InvestorSignupPage implements OnInit {
           this.appService.storeLocalData('userData',JSON.stringify({
             "firstName":form.value.firstName,
             "lastName":form.value.lastName,
-            "email": form.value.email
+            "email": form.value.email,
+            "phoneNumber": form.value.phoneNumber,
+            "userType" : "ENTREPRENEUR"
           }))
           this.router.navigateByUrl('/terms');
         })
@@ -74,4 +94,8 @@ export class InvestorSignupPage implements OnInit {
   navigateToPage(destination) {
     this.router.navigateByUrl(destination);
   }
+  navigateToForgotPassword() {
+    this.router.navigateByUrl('/reset-password');
+  }
+
 }

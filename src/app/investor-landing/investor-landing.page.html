@@ -1,0 +1,60 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>investor-landing</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+
+
+<ion-content class="onboarding-bg">
+    <ion-row>
+        <ion-col size="2">
+            <ion-buttons (click)="navigateToPage('/landing')">
+              <ion-img src="../assets/icon/arrow-back.svg" style="width: 24px;margin:20px"></ion-img>
+            </ion-buttons>
+        </ion-col>      
+      </ion-row> 
+
+    <ion-grid style="text-align: center;padding: 0px;height: 70%;">
+        <ion-row style="height: 100%;">
+          <ion-col style="padding: 0px;">
+              <ion-slides pager="true" [options]="slideOptsOne" style="height: 100%;">
+
+                  <ion-slide>
+                   <div class="slider-div">
+                      <p class="companyName">Company name</p>
+                      <img class="slider-img" src="../../assets/imgs/man.png"/><br/>
+                      <p class="medium-text">Thinking of making an investment?</p>
+                   </div>
+                  </ion-slide>
+              
+                  <ion-slide>
+                      <div class="slider-div">
+                          <p class="companyName">Company name</p>
+                          <img class="slider-img" src="../../assets/imgs/cash-hand.png"/><br/>
+                          <p class="medium-text">Discover profitable businesses you can invest in</p>
+                       </div>
+                  </ion-slide>
+            
+                </ion-slides>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    <ion-grid style="text-align:center;height: 20%;">
+      <ion-row>
+        <ion-col>
+  
+          <ion-button class="default-button"  (click)="navigateToPage('/investor-login')">
+            Sign in
+          </ion-button><br/>
+  
+          <ion-button class="default-clear-button"  (click)="navigateToPage('/investor-signup')">
+              Create an Account
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+  </ion-content>
+  

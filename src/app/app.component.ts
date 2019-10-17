@@ -141,7 +141,7 @@ export class AppComponent {
           console.log('going to login page');
           
           // this.rootPage = LoginPage;
-          this.navCtrl.navigateRoot('login');
+          this.navCtrl.navigateRoot('landing');
           unsubscribe();
         } else {
 

@@ -29,6 +29,13 @@ const routes: Routes = [
   { path: 'investment-profile', loadChildren: './investment-profile/investment-profile.module#InvestmentProfilePageModule' },
   { path: 'investments', loadChildren: './investments/investments.module#InvestmentsPageModule' },
   { path: 'companies', loadChildren: './companies/companies.module#CompaniesPageModule' },
+  { path: 'landing', loadChildren: './landing/landing.module#LandingPageModule' },
+  { path: 'investor-landing', loadChildren: './investor-landing/investor-landing.module#InvestorLandingPageModule' },
+  { path: 'entrepreneur-landing', loadChildren: './entrepreneur-landing/entrepreneur-landing.module#EntrepreneurLandingPageModule' },
+  { path: 'investor-login', loadChildren: './investor-login/investor-login.module#InvestorLoginPageModule' },
+  { path: 'entrepreneur-login', loadChildren: './entrepreneur-login/entrepreneur-login.module#EntrepreneurLoginPageModule' },
+  { path: 'entrepreneur-signup', loadChildren: './entrepreneur-signup/entrepreneur-signup.module#EntrepreneurSignupPageModule' },
+  { path: 'terms', loadChildren: './terms/terms.module#TermsPageModule' },
 ];
 
 @NgModule({

@@ -1,0 +1,117 @@
+<!-- <ion-header>
+  <ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="login"></ion-back-button>
+  </ion-buttons>
+  <ion-title>
+    Portfolio
+  </ion-title>
+</ion-toolbar>
+</ion-header>
+
+<ion-content class="auth-page" padding>
+  <div id="logo">
+    <h3 class="logo">TEST APP</h3>
+  </div>
+
+  <form  #signupForm="ngForm" (submit)="signUp(signupForm)" novalidate>
+    <ion-item>
+      <ion-input required placeholder="First Name" ngModel type="text" name="firstName" clearInput></ion-input>
+    </ion-item><br>
+    <ion-item>
+      <ion-input required placeholder="Last Name" ngModel type="text" name = "lastName" clearInput></ion-input>
+    </ion-item><br>
+    <ion-item>
+      <ion-input required placeholder="Email" ngModel type="email" name="email" clearInput>
+      </ion-input>
+    </ion-item><br/>
+    <ion-item>
+      <ion-input required placeholder="Phone" ngModel type="tel" name="phoneNumber" clearInput>
+      </ion-input>
+    </ion-item><br/>
+    <ion-item >
+      <ion-input required placeholder="Password" ngModel [type]="passwordType2" name = "password" clearInput></ion-input>
+      <ion-icon [name]="passwordShown2 === true ? 'eye-off':'eye' " item-end color="primary" (click)="togglePassword2()"></ion-icon>
+    </ion-item><br/>
+  
+ 
+      <ion-button [disabled]="!signupForm.valid" style="border-radius: 30px" ion-button color="brand2" type="submit"   full round>Signup</ion-button>
+
+  </form>
+</ion-content> -->
+
+
+
+
+
+<ion-content class="onboarding-bg">
+    <ion-row>
+        <ion-col size="2">
+            <ion-buttons (click)="navigateToPage('/entrepreneur-landing')">
+              <ion-img src="../assets/icon/arrow-back.svg" style="width: 24px;margin:20px"></ion-img>
+            </ion-buttons>
+        </ion-col>      
+      </ion-row> 
+      <ion-row>
+        <ion-col class="header">
+          Investor
+        </ion-col>
+      </ion-row>
+  
+    <ion-grid style="text-align: center;padding: 0px;">
+        <ion-row style="height: 100%;">
+          <ion-col style="padding: 0px;">
+  
+                   <div class="slider-div">
+                      <p class="companyName">Company name</p>
+                      <form  #signupForm="ngForm" (submit)="signUp(signupForm)" novalidate>
+                          <div style="padding: 10px 40px;">
+                              <p class="sign-in">Create an Account</p>
+                              <input  required  ngModel  name="firstName" clearInput type="text" placeholder="First Name"/><br/><br/>
+                              <input type="text" placeholder="Last Name" required  ngModel  name = "lastName" clearInput/><br/><br/>
+                              <input type="email" placeholder="Email address"  required  ngModel name="email" clearInput/><br/><br/>
+                              <input class="password-input" type="password" placeholder="Password" required ngModel name = "password" clearInput/><br/><br/>
+                              <input type="tel" placeholder="Phone Number" required  ngModel name="phoneNumber" clearInput/><br/><br/>
+                              <ion-button style="width: 100%;" class="default-button" [disabled]="!signupForm.valid" type="submit">
+                                Sign in
+                              </ion-button><br/>
+                              <div style="text-align: center;margin:auto">
+                                <hr style="background-color:
+                                  #00000070;width:20%;margin: 0px;display: inline-block;">
+                                <p style="display: inline-block;margin:0px;font-size:medium;vertical-align: sub;margin: 15px;color: #00000070;">or connect with</p>
+                                <hr style="display: inline-block;background-color:
+                                  #00000070;width:20%;margin: 0px;">
+                              </div><br>
+                            </div>
+                      </form>
+                   </div>
+              
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col style="text-align: right;">
+            <img style="margin-left: 5px;" src="../../assets/imgs/linkedIn.png"/>
+          </ion-col>
+          <ion-col style="text-align: left;">
+            <img style="margin-left: 5px;" src="../../assets/imgs/google.png"/>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <p class="smallText" style="color: #00000070;">Don't have an account? </p><p style="color:#429E1A ;margin-left: 3px;" class="smallText">Sign up</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  
+    <ion-grid style="text-align:center">
+      <ion-row>
+        <ion-col>
+  
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+  </ion-content>
+  
+  
+  

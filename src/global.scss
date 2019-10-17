@@ -24,3 +24,60 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+p{
+    font-family: Ubuntu;
+}
+
+ion-button{
+    width: 70%;
+    height: 57px;
+    font-size: 26px;
+    text-transform: capitalize;
+    border-radius: 5px;
+}
+input{
+    width: 100%;
+    border: none;
+    border-bottom: 0.1px solid #C4C4C4;
+    font-size: 16px;
+    padding: 15px 0px;
+    outline: none;
+    background-color: transparent;
+}
+
+.default-button{
+    width: 70%;
+    height: 47px;
+    font-size: 16px;
+    text-transform: capitalize;
+    border-radius: 5px;   
+}
+.default-clear-button{
+    width: 70%;
+    height: 47px;
+    font-size: 16px;
+    text-transform: capitalize;
+    border-radius: 5px;   
+    --background: transparent;
+    border:solid 1px #429E1A;
+    color: #429E1A;
+}
+
+@font-face{
+    font-family: Ubuntu;
+    src: url("./assets/fonts/Ubuntu.woff2");
+  }
+
+  .onboarding-bg {
+    --background: none;
+    background-image: url('./assets/imgs/bottomImage.png');    
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: bottom;
+
+    .ion-grid-wrapper {
+        margin: 25% 5% 0 5%;
+    }
+
+}
