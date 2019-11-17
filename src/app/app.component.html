@@ -1,19 +1,26 @@
 <ion-app>
   <ion-split-pane>
     <ion-menu type="overlay">
-      <ion-header>
+      <ion-header no-shadow no-border>
         <ion-toolbar>
           <!-- <ion-title>Menu</ion-title> -->
         <div style="text-align: center">
-            <img src="../assets/icon/avatar.svg" style="width:50px;margin:10px 0 0 0"/>
-            <p>{{firstName}} {{lastName}}</p>
+            <img src="../assets/imgs/avatar.png" style="width:50px;margin:10px 0 0 0;    display: inline-block;
+            float: left;
+            margin: 20px;"/>
+            <p style="display: inline-block;
+            float: left;
+            margin: 30px 40px 0 0;">{{firstName}} {{lastName}}</p><br/>
+            <p style="color: #429E1A;font-size: 15px;display: inline-block;
+            float: left;
+            margin: 10px 0 0 0;">View Profile</p>
         </div>
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <ion-list>
+        <ion-list no-lines>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+            <ion-item no-lines style="margin-bottom: 30px;" [routerDirection]="'root'" [routerLink]="[p.url]">
               <ion-icon slot="start" [name]="p.icon"></ion-icon>
               <ion-label>
                 {{p.title}}

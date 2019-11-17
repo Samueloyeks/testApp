@@ -141,6 +141,7 @@ export class AppComponent {
           console.log('going to login page');
           
           // this.rootPage = LoginPage;
+          // this.navCtrl.navigateRoot('select-interests');
           this.navCtrl.navigateRoot('landing');
           unsubscribe();
         } else {
@@ -165,7 +166,8 @@ export class AppComponent {
             }
             
           } else {
-            this.navCtrl.navigateRoot('login');
+            console.log('cannot get user type')
+            this.navCtrl.navigateRoot('landing');
           }
           unsubscribe();
         }
@@ -185,7 +187,7 @@ export class AppComponent {
             this.presentLoader('Logging out...').then(()=>{
               this.firebaseService.logoutUserService();
               this.appService.deleteLocalStorage("userData")
-              this.navigateToPage('login')
+              this.navigateToPage('landing')
             }).then(()=>{
               this.loadingCtrl.dismiss();
 

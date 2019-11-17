@@ -1,3 +1,21 @@
 ion-menu-button{
     display: block !important;
   }
+.toolbar-content{
+  max-width: 90%;
+}
+.searchbar-md-h{
+  width: 90%;
+  border-radius: 5px;
+}
+.post-icon{
+  height: 15px;
+  display: inline-block;
+  width: 30%;
+  margin: 14px 0 10px 30px;
+}
+.post-text{
+font: 14px;
+display: inline-block;
+float: right;
+}

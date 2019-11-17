@@ -37,6 +37,7 @@ const routes: Routes = [
   { path: 'entrepreneur-signup', loadChildren: './entrepreneur-signup/entrepreneur-signup.module#EntrepreneurSignupPageModule' },
   { path: 'terms', loadChildren: './terms/terms.module#TermsPageModule' },
   { path: 'welcome', loadChildren: './welcome/welcome.module#WelcomePageModule' },
+  { path: 'select-interests', loadChildren: './select-interests/select-interests.module#SelectInterestsPageModule' },
 ];
 
 @NgModule({

@@ -100,16 +100,18 @@ export class LoginPage implements OnInit{
               this.navCtrl.navigateRoot('home');
 
             }else if(this.userData.userType == 'INVESTOR'){
-              this.appService.storeLocalData('userData',JSON.stringify({
-                "firstName": this.userData.firstName,
-                "lastName": this.userData.lastName,
-                "email": this.userData.email,
-                "phoneNumber": this.userData.phoneNumber,
-                "userType" : this.userData.userType
-              }))
-              console.log('INVESTOR');
+              // this.appService.storeLocalData('userData',JSON.stringify({
+              //   "firstName": this.userData.firstName,
+              //   "lastName": this.userData.lastName,
+              //   "email": this.userData.email,
+              //   "phoneNumber": this.userData.phoneNumber,
+              //   "userType" : this.userData.userType
+              // }))
+              // console.log('INVESTOR');
 
-              this.navCtrl.navigateRoot('investor-home');
+              // this.navCtrl.navigateRoot('investor-home');
+              this.loadingCtrl.dismiss()
+              this.customPresentAlert('No entrepreneur account with these details','Error')
 
             }
   
@@ -188,6 +190,15 @@ export class LoginPage implements OnInit{
     };
 
     })
+  }
+
+  async customPresentAlert(message, submessage) {
+    const alert = await this.alertCtrl.create({
+      message: message,
+      subHeader: submessage,
+      buttons: ["OK"]
+    });
+    await alert.present();
   }
 
   navigateToPage(destination) {

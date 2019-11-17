@@ -65,7 +65,7 @@ export class EntrepreneurLoginPage implements OnInit {
               }))
               console.log('ENTREPRENEUR');
 
-              this.navCtrl.navigateRoot('terms');
+              this.navCtrl.navigateRoot('home');
 
             }else if(this.userData.userType == 'INVESTOR'){
               // this.appService.storeLocalData('userData',JSON.stringify({
@@ -79,7 +79,7 @@ export class EntrepreneurLoginPage implements OnInit {
 
               // this.navCtrl.navigateRoot('terms');
               this.loadingCtrl.dismiss()
-              this.customPresentAlert('No investor account with these details','Error')
+              this.customPresentAlert('No entrepreneur account with these details','Error')
 
             }
   

@@ -1,0 +1,142 @@
+// // page-login {
+//     ion-icon::before {
+//         color: #90b6fb;
+//     }
+//       #forgot_password{
+//         background-color: transparent !important;
+//       }
+//       .segment .segment-button.segment-activated {
+//         color: #fff;
+//         background-color: #90b6fb;
+//         opacity: 1;
+//         -webkit-transition: 100ms all linear;
+//         transition: 100ms all linear;
+//     }
+//     .segment .segment-button {
+//       border-color: #90b6fb;
+//       color: #90b6fb;
+//     }
+//       .button{
+//         background-color: #90b6fb !important;
+//       }
+//       .button-ios{
+//         background-color: #90b6fb !important;
+//       }
+//     ion-content{
+//       text-align: center;
+//       background-color: #90b6fb;
+//       --background:#3a465f;
+//     }
+//     #logo>img{height: 220px;}
+//     .scroll-content {
+//         padding: 16px;
+//         background-color: #5F5686;
+//     }
+//     .auth-page {
+//         .invalid {
+//           .item-inner {
+//             border-bottom: 1px solid #ff6153;
+//           }
+//         }
+//         .valid {
+//           .item-inner {
+//             border-bottom: 1px solid #90b6fb;
+//           }
+//         }
+//         ion-item{border-radius: 30px;}
+//         .error-message {
+//           min-height: 2.2rem;
+//           background-color: #5F5686;
+//           p {
+//             color: #ff6153;
+//             font-size: 80%;
+//             background-color: #5F5686;
+//             padding: 0px;
+//             margin: 0px;
+//           }
+//           ion-label {
+//             margin: 2px 0;
+//           }
+//           .item-inner {
+//             border-bottom: 0 !important;
+//           }
+//         }
+//       }
+//       .logo{
+//         font-size: 30px;
+//         font-family: fantasy;
+//         font-weight: bolder;
+//         margin: 50px;
+//         color: aliceblue;
+//       }
+//     // }
+    
+
+.companyName{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+  }
+  .smallText{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    display: inline-block;
+  }
+  .slider-div{
+    width: 100%;
+    text-align: center;
+    // border-bottom: 0.2px solid #C4C4C4;
+    height: 100%;
+  }
+  .slider-img{
+    // width: 75%;
+    // height: 40%;
+  }
+  .medium-text{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  }
+  
+  .header{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  padding: 10px;
+  
+  color: rgba(0, 0, 0, 0.54);
+  text-align: right;
+  border-right: 5px solid #429E1A;
+  }
+  .sign-in{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  color: #000000;
+  text-align: left;
+  // padding: 20px;
+  }
+  .forgot-pass{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  /* identical to box height */
+  text-align: right;
+  color: #429E1A;
+  }
+  
+  .password-input{
+    background-image: url('../../assets/icon/padlock.svg');
+    background-repeat: no-repeat;
+    background-position: right;
+  }
+  .terms-div{
+    margin-top: 100px;
+    background-color: #27A2DB;
+    padding: 20px;
+  }
+  .terms{
+    margin: 30px 0px 50px 0px;
+    text-align: left;
+  }

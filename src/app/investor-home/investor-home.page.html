@@ -1,15 +1,28 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button persistence="true"></ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      Home
-    </ion-title>
+    
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content padding>
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+          
+          <ion-menu-button persistence="true"><img src="../../assets/icon/menu.svg"/></ion-menu-button>
+        </ion-buttons>
+        <ion-searchbar type="text" color="light" placeholder="Search" clearInput style="border-radius: 10px;">
+        </ion-searchbar>
+        <ion-buttons slot="end">
+          <!-- <ion-icon name="chatbubbles" size="large"></ion-icon> -->
+          <img src="../../assets/icon/chatbubble.svg"/>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+<!-- <ion-content padding>
 <h5>Your Investments</h5>
 <ion-item *ngFor="let investment of investments">
 {{investment.name}}
@@ -24,4 +37,291 @@
     </ion-icon>
   </ion-fab-button>
 </ion-fab>
-</ion-content>
+</ion-content> -->
+<ion-content>
+  <div style="background-color: #F1EDED;padding: 10px;">
+    <textarea style="width: 90%;border-radius: 5px;border: 0.5px;height: 32px;" placeholder="Write a post...">
+
+    </textarea>
+    <ion-icon style="float: right;" name="camera" size="large"></ion-icon>
+  </div>
+    <!-- <ion-button (click)="toggleInfiniteScroll()" expand="block">
+      Toggle Infinite Scroll
+    </ion-button> -->
+  
+    <ion-list></ion-list>
+  
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+        <ion-card>
+            <ion-item>
+                <ion-avatar item-start>
+                    <img src="../../assets/imgs/avatar.png">
+                </ion-avatar>
+                <div style="width: 100%;">
+                  <div style="width: 50%;display: inline-block;">
+                      <h2 style="font-family: Ubuntu;
+                      font-style: normal;
+                      font-weight: 500;
+                      font-size: 16px;
+                      margin: 10px;
+                      line-height: 18px;">Textile Plant</h2>
+                      <h4 style="font-family: Roboto;
+                      font-style: normal;
+                      font-weight: normal;
+                      font-size: 16px;
+                      line-height: 19px;
+                      margin: 0px 10px 10px;
+                      color: rgba(0, 0, 0, 0.6);">Emah Thompson</h4>
+                  </div>
+                  <div style="float:right;">
+                      <p style="font-family: Roboto;
+                      font-style: normal;
+                      font-weight: normal;
+                      font-size: 14px;
+                      line-height: 16px;
+                      display: flex;
+                      align-items: center;">2 days ago</p>
+                  </div>
+                </div>
+            </ion-item>
+            <ion-slides pager="true" parallax="true">
+                <ion-slide>
+                    <img src="../assets/imgs/background.jpg">
+                </ion-slide>
+                <ion-slide>
+                    <img src="../assets/imgs/yinyang.jpg">
+                </ion-slide>
+                <ion-slide>
+                    <img src="../assets/imgs/background.jpg">
+                </ion-slide>
+            </ion-slides>
+    
+            <ion-row>
+                <ion-col>
+                    <img class="post-icon" src="../../assets/icon/like.svg"/>
+                    <p class="post-text">200</p>
+                </ion-col>
+    
+                <ion-col>
+                  <img class="post-icon" src="../../assets/icon/comment.svg"/>
+                  <p class="post-text">20</p>
+                </ion-col>
+    
+                <ion-col>
+                  <img class="post-icon"src="../../assets/icon/view.svg"/>
+                  <p class="post-text">4300</p>
+                </ion-col>
+
+                <ion-col>
+                 <img class="post-icon" src="../../assets/icon/more.svg"/>
+                </ion-col>
+    
+            </ion-row>
+        </ion-card>
+
+        <ion-card>
+          <ion-item>
+              <ion-avatar item-start>
+                  <img src="../../assets/imgs/avatar.png">
+              </ion-avatar>
+              <div style="width: 100%;">
+                <div style="width: 50%;display: inline-block;">
+                    <h2 style="font-family: Ubuntu;
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 16px;
+                    margin: 10px;
+                    line-height: 18px;">Textile Plant</h2>
+                    <h4 style="font-family: Roboto;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 19px;
+                    margin: 0px 10px 10px;
+                    color: rgba(0, 0, 0, 0.6);">Emah Thompson</h4>
+                </div>
+                <div style="float:right;">
+                    <p style="font-family: Roboto;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 16px;
+                    display: flex;
+                    align-items: center;">2 days ago</p>
+                </div>
+              </div>
+          </ion-item>
+          <ion-slides pager="true" parallax="true">
+              <ion-slide>
+                  <img src="../assets/imgs/background.jpg">
+              </ion-slide>
+              <ion-slide>
+                  <img src="../assets/imgs/yinyang.jpg">
+              </ion-slide>
+              <ion-slide>
+                  <img src="../assets/imgs/background.jpg">
+              </ion-slide>
+          </ion-slides>
+  
+          <ion-row>
+              <ion-col>
+                  <img class="post-icon" src="../../assets/icon/like.svg"/>
+                  <p class="post-text">200</p>
+              </ion-col>
+  
+              <ion-col>
+                <img class="post-icon" src="../../assets/icon/comment.svg"/>
+                <p class="post-text">20</p>
+              </ion-col>
+  
+              <ion-col>
+                <img class="post-icon"src="../../assets/icon/view.svg"/>
+                <p class="post-text">4300</p>
+              </ion-col>
+
+              <ion-col>
+               <img class="post-icon" src="../../assets/icon/more.svg"/>
+              </ion-col>
+  
+          </ion-row>
+      </ion-card>
+
+      <ion-card>
+        <ion-item>
+            <ion-avatar item-start>
+                <img src="../../assets/imgs/avatar.png">
+            </ion-avatar>
+            <div style="width: 100%;">
+              <div style="width: 50%;display: inline-block;">
+                  <h2 style="font-family: Ubuntu;
+                  font-style: normal;
+                  font-weight: 500;
+                  font-size: 16px;
+                  margin: 10px;
+                  line-height: 18px;">Textile Plant</h2>
+                  <h4 style="font-family: Roboto;
+                  font-style: normal;
+                  font-weight: normal;
+                  font-size: 16px;
+                  line-height: 19px;
+                  margin: 0px 10px 10px;
+                  color: rgba(0, 0, 0, 0.6);">Emah Thompson</h4>
+              </div>
+              <div style="float:right;">
+                  <p style="font-family: Roboto;
+                  font-style: normal;
+                  font-weight: normal;
+                  font-size: 14px;
+                  line-height: 16px;
+                  display: flex;
+                  align-items: center;">2 days ago</p>
+              </div>
+            </div>
+        </ion-item>
+        <ion-slides pager="true" parallax="true">
+            <ion-slide>
+                <img src="../assets/imgs/background.jpg">
+            </ion-slide>
+            <ion-slide>
+                <img src="../assets/imgs/yinyang.jpg">
+            </ion-slide>
+            <ion-slide>
+                <img src="../assets/imgs/background.jpg">
+            </ion-slide>
+        </ion-slides>
+
+        <ion-row>
+            <ion-col>
+                <img class="post-icon" src="../../assets/icon/like.svg"/>
+                <p class="post-text">200</p>
+            </ion-col>
+
+            <ion-col>
+              <img class="post-icon" src="../../assets/icon/comment.svg"/>
+              <p class="post-text">20</p>
+            </ion-col>
+
+            <ion-col>
+              <img class="post-icon"src="../../assets/icon/view.svg"/>
+              <p class="post-text">4300</p>
+            </ion-col>
+
+            <ion-col>
+             <img class="post-icon" src="../../assets/icon/more.svg"/>
+            </ion-col>
+
+        </ion-row>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+          <ion-avatar item-start>
+              <img src="../../assets/imgs/avatar.png">
+          </ion-avatar>
+          <div style="width: 100%;">
+            <div style="width: 50%;display: inline-block;">
+                <h2 style="font-family: Ubuntu;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                margin: 10px;
+                line-height: 18px;">Textile Plant</h2>
+                <h4 style="font-family: Roboto;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 19px;
+                margin: 0px 10px 10px;
+                color: rgba(0, 0, 0, 0.6);">Emah Thompson</h4>
+            </div>
+            <div style="float:right;">
+                <p style="font-family: Roboto;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 16px;
+                display: flex;
+                align-items: center;">2 days ago</p>
+            </div>
+          </div>
+      </ion-item>
+      <ion-slides pager="true" parallax="true">
+          <ion-slide>
+              <img src="../assets/imgs/background.jpg">
+          </ion-slide>
+          <ion-slide>
+              <img src="../assets/imgs/yinyang.jpg">
+          </ion-slide>
+          <ion-slide>
+              <img src="../assets/imgs/background.jpg">
+          </ion-slide>
+      </ion-slides>
+
+      <ion-row>
+          <ion-col>
+              <img class="post-icon" src="../../assets/icon/like.svg"/>
+              <p class="post-text">200</p>
+          </ion-col>
+
+          <ion-col>
+            <img class="post-icon" src="../../assets/icon/comment.svg"/>
+            <p class="post-text">20</p>
+          </ion-col>
+
+          <ion-col>
+            <img class="post-icon"src="../../assets/icon/view.svg"/>
+            <p class="post-text">4300</p>
+          </ion-col>
+
+          <ion-col>
+           <img class="post-icon" src="../../assets/icon/more.svg"/>
+          </ion-col>
+
+      </ion-row>
+  </ion-card>
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-content>

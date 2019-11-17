@@ -82,7 +82,7 @@ export class InvestorLoginPage implements OnInit {
               }))
               console.log('INVESTOR');
 
-              this.navCtrl.navigateRoot('terms');
+              this.navCtrl.navigateRoot('investor-home');
 
             }
   

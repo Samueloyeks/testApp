@@ -5,6 +5,8 @@ import { ModalController } from '@ionic/angular';
 import { InvestmentModalPage } from '../investment-modal/investment-modal.page';
 import { OverlayEventDetail } from '@ionic/core';
 import { FirebaseServiceService } from '../firebase-service.service';
+import {  ViewChild } from '@angular/core';
+import { IonInfiniteScroll } from '@ionic/angular';
 
 
 
@@ -14,6 +16,7 @@ import { FirebaseServiceService } from '../firebase-service.service';
   styleUrls: ['./investor-home.page.scss'],
 })
 export class InvestorHomePage implements OnInit {
+  @ViewChild(IonInfiniteScroll,{static:false}) infiniteScroll: IonInfiniteScroll;
 
   userData;
   firstName;
@@ -23,7 +26,7 @@ export class InvestorHomePage implements OnInit {
   userType;
 
   investments
-
+  data
   constructor(public loadingCtrl:LoadingController, public zone:NgZone,public alertCtrl:AlertController,public menu:MenuController,
      public appService:AppService,public events:Events, public modalController: ModalController,public firebaseService:FirebaseServiceService) { 
     this.getLocallyStoredUserData();
@@ -37,6 +40,24 @@ export class InvestorHomePage implements OnInit {
         this.investments = investments
       })
     })
+  }
+
+
+  loadData(event) {
+    setTimeout(() => {
+      console.log('Done');
+      event.target.complete();
+
+      // App logic to determine if all data is loaded
+      // and disable the infinite scroll
+      if (this.data.length == 1000) {
+        event.target.disabled = true;
+      }
+    }, 500);
+  }
+
+  toggleInfiniteScroll() {
+    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
 
   ngOnInit() {

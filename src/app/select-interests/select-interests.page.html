@@ -1,0 +1,40 @@
+n<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>investor-landing</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+
+
+<ion-content class="onboarding-bg">
+  
+    <ion-grid style="text-align: center;padding: 0px;margin-top:130px">
+        <ion-row style="height: 100%;">
+          <ion-col style="padding: 0px;">
+  
+                   <div class="slider-div">
+                          <div style="padding: 10px 40px;">
+                              <p class="sign-in"> Select business interests</p>
+                              <div *ngIf="testList.length > 0" style="margin-bottom: 50px;">
+                                <ion-item *ngFor="let member of testList">
+                                  <img style="margin-right:5px" [src]=member?.icon/>
+                                  <ion-label>{{member?.testName || 'N/A'}}</ion-label>
+                                  <ion-checkbox color="dark" (click)="selectMember(member)" [(ngModel)]="member.checked"></ion-checkbox>
+                                </ion-item>
+                              </div>
+  
+                              <ion-button (click)="submitSelections()" style="width: 100%;">
+                                Done
+                              </ion-button><br/>
+  
+                            </div>    
+                   </div>
+              
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  
+  
+  </ion-content>
+  
+  

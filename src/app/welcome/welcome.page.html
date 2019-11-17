@@ -1,9 +1,69 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>welcome</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
 
+
+<ion-content class="auth-page" padding>
+  <div id="logo">
+    <!-- <img src="../../assets/imgs/Konet 2.png"> -->
+    <h3 class="logo">TEST APP</h3>
+  </div>
+  <div padding>
+    <ion-segment [(ngModel)]="login">
+      <ion-segment-button value="Login" style="color: aliceblue">
+        Login
+      </ion-segment-button>
+      <ion-segment-button value="Signup" style="color: aliceblue">
+        Signup
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="login">
+      <div *ngSwitchCase="'Login'">
+      <form   #loginForm="ngForm" (submit)="logIn(loginForm)" novalidate>
+          <ion-item>
+              <ion-input required placeholder="Email" ngModel type="email" clearInput name="email" > </ion-input>
+            </ion-item><br/>
+            <ion-item >    
+              <ion-input required placeholder="Password" ngModel [type]="passwordType" name = "password"  clearInput></ion-input>
+              <ion-icon [name]="passwordShown === true ? 'eye-off':'eye' " item-end color="primary" (click)="togglePassword()"></ion-icon>
+            </ion-item>
+            <br>
+            <ion-button [disabled]="!loginForm.valid" style="border-radius: 30px" ion-button color="brand2" type="submit"  full round>Login</ion-button>
+           
+      </form><br/>
+          <ion-buttons style="float: right">
+              <button style="float: right;color: aliceblue;font-size: 15px" ion-button id="forgot_password" clear color="light" (click)="navigateToForgotPassword()">Forgot password?</button>
+            </ion-buttons>
+          </div>
+
+        <form *ngSwitchCase="'Signup'"  #signupForm="ngForm" (submit)="signUp(signupForm)" novalidate>
+            <ion-item>
+              <ion-input required placeholder="First Name" ngModel type="text" name="firstName" clearInput></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-input required placeholder="Last Name" ngModel type="text" name = "lastName" clearInput></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-input required placeholder="Email" ngModel type="email" name="email" clearInput>
+              </ion-input>
+            </ion-item><br/>
+            <ion-item>
+              <ion-input required placeholder="Phone" ngModel type="tel" name="phoneNumber" clearInput>
+              </ion-input>
+            </ion-item><br/>
+            <ion-item >
+              <ion-input required placeholder="Password" ngModel [type]="passwordType2" name = "password" clearInput></ion-input>
+              <ion-icon [name]="passwordShown2 === true ? 'eye-off':'eye' " item-end color="primary" (click)="togglePassword2()"></ion-icon>
+            </ion-item><br/>
+          
+         
+              <ion-button [disabled]="!signupForm.valid" style="border-radius: 30px" ion-button color="brand2" type="submit"   full round>Signup</ion-button>
+     
+          </form>
+
+          <div style="text-align: left">
+            <p style="color:cornflowerblue;margin: 0px" (click)="navigateToPage('/investor-signup')">Sign up as an investor</p>
+
+          </div>
+  </div>
 </ion-content>

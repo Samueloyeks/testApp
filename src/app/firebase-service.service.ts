@@ -59,6 +59,17 @@ export class FirebaseServiceService {
    return this.userProfile.child(`${firebase.auth().currentUser.uid}`).child('investmentProfile').push(data)
   }
 
+  addInterests(data){
+    return this.userProfile.child(`${firebase.auth().currentUser.uid}`).child('interests').push(data)
+  }
+
+  getUserData(){
+     this.userProfile.child(`${firebase.auth().currentUser.uid}`).once('value',data=>{
+      console.log(data.val())
+      return data.val()
+    })
+  }
+
   getInvestments(){
     let temp
     this.userProfile.child(`${firebase.auth().currentUser.uid}`).child('investmentProfile').on('value',data=>{
